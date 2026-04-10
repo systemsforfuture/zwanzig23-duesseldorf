@@ -3,1127 +3,815 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Zwanzig23 — Düsseldorf · ★ Michelin · 🌿 Grüner Stern</title>
+<title>Zwanzig23 | Düsseldorf-Bilk</title>
+<meta name="description" content="Zwanzig23 — Fine Dining by Lukas Jakobi. Düsseldorf-Bilk.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --accent: #6B4FA0;
-    --accent-mid: #8B6FC0;
-    --accent-light: #A98FD8;
-    --accent-glow: rgba(107, 79, 160, 0.15);
-    --gold: #C8A96A;
-    --green: #4A8A5A;
-    --green-light: #6AAA7A;
-    --bg: #06050A;
-    --bg-card: #0D0B14;
-    --bg-elevated: #12101A;
-    --text: #F0EDF8;
-    --text-muted: rgba(240, 237, 248, 0.5);
-    --text-dim: rgba(240, 237, 248, 0.3);
-    --border: rgba(107, 79, 160, 0.2);
-    --border-subtle: rgba(240, 237, 248, 0.08);
-  }
-
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  html { font-size: 16px; scroll-behavior: smooth; }
-
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 300;
-    line-height: 1.6;
-    overflow-x: hidden;
-  }
-
-  /* Background pattern — geometric triangles */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image:
-      repeating-linear-gradient(
-        60deg,
-        transparent,
-        transparent 70px,
-        rgba(107, 79, 160, 0.03) 70px,
-        rgba(107, 79, 160, 0.03) 71px
-      ),
-      repeating-linear-gradient(
-        -60deg,
-        transparent,
-        transparent 70px,
-        rgba(107, 79, 160, 0.03) 70px,
-        rgba(107, 79, 160, 0.03) 71px
-      );
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  /* NAV */
-  nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 100;
-    padding: 1.5rem 4rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    transition: all 0.4s ease;
-  }
-
-  nav.scrolled {
-    background: rgba(6, 5, 10, 0.92);
-    backdrop-filter: blur(20px);
-    padding: 1rem 4rem;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .nav-logo {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.4rem;
-    font-weight: 300;
-    letter-spacing: 0.15em;
-    color: var(--text);
-    text-decoration: none;
-  }
-
-  .nav-links {
-    display: flex;
-    gap: 2.5rem;
-    list-style: none;
-  }
-
-  .nav-links a {
-    color: var(--text-muted);
-    text-decoration: none;
-    font-size: 0.75rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    transition: color 0.3s;
-  }
-
-  .nav-links a:hover { color: var(--accent-light); }
-
-  .nav-badge {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    font-size: 0.7rem;
-    letter-spacing: 0.12em;
-    color: var(--text-muted);
-  }
-
-  .nav-star { color: var(--gold); }
-  .nav-green { color: var(--green-light); }
-
-  /* HERO */
-  .hero {
-    position: relative;
-    min-height: 100vh;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
-    padding: 8rem 4rem 4rem;
-    overflow: hidden;
-  }
-
-  .hero-watermark {
-    position: absolute;
-    top: 50%;
-    right: -2%;
-    transform: translateY(-50%);
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 32vw;
-    font-weight: 300;
-    color: rgba(107, 79, 160, 0.028);
-    line-height: 1;
-    pointer-events: none;
-    user-select: none;
-    letter-spacing: -0.05em;
-  }
-
-  .hero-left {
-    position: relative;
-    z-index: 1;
-    padding-right: 4rem;
-  }
-
-  .hero-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 0.65rem;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    margin-bottom: 2rem;
-  }
-
-  .hero-badge-dot {
-    width: 4px;
-    height: 4px;
-    background: var(--accent);
-    border-radius: 50%;
-  }
-
-  .hero-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(4rem, 9vw, 10rem);
-    font-weight: 300;
-    line-height: 0.9;
-    letter-spacing: -0.02em;
-    margin-bottom: 1rem;
-  }
-
-  .hero-title-accent { color: var(--accent-mid); font-style: italic; }
-
-  .hero-year {
-    font-size: 0.7rem;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--text-dim);
-    margin-bottom: 2.5rem;
-  }
-
-  .hero-desc {
-    font-size: 0.95rem;
-    line-height: 1.8;
-    color: var(--text-muted);
-    max-width: 420px;
-    margin-bottom: 3rem;
-  }
-
-  .hero-stars {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-    margin-bottom: 2.5rem;
-  }
-
-  .star-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    padding: 0.4rem 0.9rem;
-    border: 1px solid;
-    font-size: 0.7rem;
-    letter-spacing: 0.15em;
-  }
-
-  .star-badge-gold {
-    border-color: rgba(200, 169, 106, 0.4);
-    color: var(--gold);
-  }
-
-  .star-badge-green {
-    border-color: rgba(74, 138, 90, 0.4);
-    color: var(--green-light);
-  }
-
-  .hero-cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.8rem;
-    padding: 0.9rem 2rem;
-    border: 1px solid var(--accent);
-    color: var(--accent-light);
-    text-decoration: none;
-    font-size: 0.75rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    transition: all 0.3s;
-  }
-
-  .hero-cta:hover {
-    background: var(--accent-glow);
-    color: var(--text);
-  }
-
-  /* HERO RIGHT — Stats */
-  .hero-right {
-    position: relative;
-    z-index: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    border-left: 1px solid var(--border-subtle);
-    padding-left: 4rem;
-  }
-
-  .hero-stat {
-    padding: 2rem 0;
-    border-bottom: 1px solid var(--border-subtle);
-  }
-
-  .hero-stat:last-child { border-bottom: none; }
-
-  .stat-label {
-    font-size: 0.62rem;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--text-dim);
-    margin-bottom: 0.4rem;
-  }
-
-  .stat-value {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 2.2rem;
-    font-weight: 300;
-    color: var(--text);
-  }
-
-  .stat-value-small {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.9rem;
-    font-weight: 300;
-    color: var(--text-muted);
-    margin-top: 0.2rem;
-  }
-
-  /* SECTION BASICS */
-  section {
-    position: relative;
-    z-index: 1;
-  }
-
-  .section-inner {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 6rem 4rem;
-  }
-
-  .section-label {
-    font-size: 0.62rem;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--accent-mid);
-    margin-bottom: 1rem;
-  }
-
-  .section-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(2.5rem, 5vw, 4.5rem);
-    font-weight: 300;
-    line-height: 1.05;
-    margin-bottom: 1.5rem;
-  }
-
-  .divider {
-    width: 60px;
-    height: 1px;
-    background: var(--accent);
-    margin-bottom: 2.5rem;
-  }
-
-  /* KONZEPT SECTION */
-  .konzept-grid {
-    display: grid;
-    grid-template-columns: 1.2fr 1fr;
-    gap: 6rem;
-    align-items: start;
-    margin-top: 2rem;
-  }
-
-  .konzept-text {
-    font-size: 1rem;
-    line-height: 1.9;
-    color: var(--text-muted);
-  }
-
-  .konzept-text p + p { margin-top: 1.2rem; }
-
-  .konzept-highlight {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.4rem;
-    font-style: italic;
-    color: var(--text);
-    line-height: 1.5;
-    margin-top: 2rem;
-    padding-left: 1.5rem;
-    border-left: 2px solid var(--accent);
-  }
-
-  .konzept-cards {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-  }
-
-  .konzept-card {
-    padding: 1.8rem 0;
-    border-bottom: 1px solid var(--border-subtle);
-  }
-
-  .konzept-card:first-child { padding-top: 0; }
-  .konzept-card:last-child { border-bottom: none; }
-
-  .konzept-card-icon {
-    font-size: 1.2rem;
-    margin-bottom: 0.8rem;
-  }
-
-  .konzept-card-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.2rem;
-    font-weight: 400;
-    color: var(--text);
-    margin-bottom: 0.4rem;
-  }
-
-  .konzept-card-text {
-    font-size: 0.82rem;
-    color: var(--text-muted);
-    line-height: 1.6;
-  }
-
-  /* CHEF SECTION */
-  .chef-section {
-    background: var(--bg-card);
-    border-top: 1px solid var(--border-subtle);
-    border-bottom: 1px solid var(--border-subtle);
-  }
-
-  .chef-grid {
-    display: grid;
-    grid-template-columns: 1fr 1.5fr;
-    gap: 6rem;
-    align-items: center;
-  }
-
-  .chef-name {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(2rem, 3.5vw, 3.5rem);
-    font-weight: 300;
-    line-height: 1.1;
-    margin-bottom: 0.5rem;
-  }
-
-  .chef-title {
-    font-size: 0.72rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--accent-light);
-    margin-bottom: 2rem;
-  }
-
-  .chef-quote {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.3rem;
-    font-style: italic;
-    font-weight: 300;
-    line-height: 1.6;
-    color: var(--text-muted);
-    position: relative;
-    padding: 0 0 0 2rem;
-    margin-bottom: 2rem;
-  }
-
-  .chef-quote::before {
-    content: '"';
-    position: absolute;
-    left: 0;
-    top: -0.5rem;
-    font-size: 4rem;
-    color: var(--accent);
-    opacity: 0.4;
-    line-height: 1;
-  }
-
-  .chef-awards {
-    display: flex;
-    flex-direction: column;
-    gap: 0.8rem;
-  }
-
-  .chef-award {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    font-size: 0.82rem;
-    color: var(--text-muted);
-  }
-
-  .chef-award-icon { color: var(--accent-light); font-size: 0.9rem; }
-
-  /* KARTE SECTION */
-  .karte-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 3px;
-    margin-top: 3rem;
-    background: var(--border-subtle);
-  }
-
-  .karte-col {
-    background: var(--bg-card);
-    padding: 3rem 2.5rem;
-  }
-
-  .karte-col-title {
-    font-size: 0.65rem;
-    letter-spacing: 0.28em;
-    text-transform: uppercase;
-    color: var(--accent-mid);
-    margin-bottom: 2rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .karte-item {
-    margin-bottom: 1.5rem;
-    padding-bottom: 1.5rem;
-    border-bottom: 1px solid var(--border-subtle);
-  }
-
-  .karte-item:last-child {
-    border-bottom: none;
-    margin-bottom: 0;
-    padding-bottom: 0;
-  }
-
-  .karte-item-name {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1rem;
-    font-weight: 400;
-    color: var(--text);
-    margin-bottom: 0.25rem;
-  }
-
-  .karte-item-desc {
-    font-size: 0.75rem;
-    color: var(--text-dim);
-    line-height: 1.5;
-  }
-
-  /* MENU SECTION */
-  .menu-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3px;
-    margin-top: 3rem;
-    background: var(--border-subtle);
-  }
-
-  .menu-card {
-    background: var(--bg-card);
-    padding: 3.5rem;
-    position: relative;
-  }
-
-  .menu-card-signature {
-    background: var(--bg-elevated);
-  }
-
-  .menu-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    font-size: 0.6rem;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    padding: 0.3rem 0.8rem;
-    margin-bottom: 2rem;
-  }
-
-  .menu-badge-standard {
-    color: var(--text-dim);
-    border: 1px solid var(--border-subtle);
-  }
-
-  .menu-badge-signature {
-    color: var(--accent-light);
-    border: 1px solid var(--accent);
-    background: var(--accent-glow);
-  }
-
-  .menu-name {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 2rem;
-    font-weight: 300;
-    color: var(--text);
-    margin-bottom: 0.3rem;
-  }
-
-  .menu-subtitle {
-    font-size: 0.75rem;
-    letter-spacing: 0.15em;
-    color: var(--text-dim);
-    margin-bottom: 2rem;
-    text-transform: uppercase;
-  }
-
-  .menu-price {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 3rem;
-    font-weight: 300;
-    color: var(--accent-light);
-    margin-bottom: 0.3rem;
-  }
-
-  .menu-price-note {
-    font-size: 0.72rem;
-    color: var(--text-dim);
-    margin-bottom: 2.5rem;
-  }
-
-  .menu-items {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 0.7rem;
-  }
-
-  .menu-items li {
-    font-size: 0.82rem;
-    color: var(--text-muted);
-    padding-left: 1rem;
-    position: relative;
-  }
-
-  .menu-items li::before {
-    content: '—';
-    position: absolute;
-    left: 0;
-    color: var(--accent);
-    font-size: 0.7rem;
-  }
-
-  /* NACHHALTIGKEIT */
-  .nachhaltigkeit-banner {
-    background: var(--bg-elevated);
-    border: 1px solid rgba(74, 138, 90, 0.25);
-    margin-top: 4rem;
-    padding: 2.5rem 3.5rem;
-    display: grid;
-    grid-template-columns: auto 1fr auto;
-    align-items: center;
-    gap: 2.5rem;
-  }
-
-  .nach-icon {
-    font-size: 2rem;
-  }
-
-  .nach-text {
-    font-size: 0.88rem;
-    line-height: 1.7;
-    color: var(--text-muted);
-  }
-
-  .nach-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.1rem;
-    color: var(--green-light);
-    margin-bottom: 0.3rem;
-  }
-
-  .nach-label {
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--green-light);
-    border: 1px solid rgba(74, 138, 90, 0.4);
-    padding: 0.4rem 0.9rem;
-  }
-
-  /* STATS BAR */
-  .stats-bar {
-    background: var(--bg-card);
-    border-top: 1px solid var(--border-subtle);
-    border-bottom: 1px solid var(--border-subtle);
-  }
-
-  .stats-bar-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    max-width: 1400px;
-    margin: 0 auto;
-  }
-
-  .stats-bar-item {
-    padding: 2.5rem 3rem;
-    border-right: 1px solid var(--border-subtle);
-    text-align: center;
-  }
-
-  .stats-bar-item:last-child { border-right: none; }
-
-  .stats-bar-value {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 2.2rem;
-    font-weight: 300;
-    color: var(--text);
-    margin-bottom: 0.3rem;
-  }
-
-  .stats-bar-label {
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--text-dim);
-  }
-
-  /* CONTACT */
-  .contact-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 3px;
-    background: var(--border-subtle);
-    margin-top: 3rem;
-  }
-
-  .contact-block {
-    background: var(--bg-card);
-    padding: 3rem;
-  }
-
-  .contact-block-title {
-    font-size: 0.62rem;
-    letter-spacing: 0.28em;
-    text-transform: uppercase;
-    color: var(--accent-mid);
-    margin-bottom: 1.5rem;
-  }
-
-  .contact-block-value {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.1rem;
-    color: var(--text);
-    line-height: 1.6;
-  }
-
-  .contact-block-sub {
-    font-size: 0.78rem;
-    color: var(--text-dim);
-    margin-top: 0.5rem;
-    line-height: 1.6;
-  }
-
-  /* FOOTER */
-  footer {
-    padding: 3rem 4rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-top: 1px solid var(--border-subtle);
-  }
-
-  .footer-logo {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.1rem;
-    font-weight: 300;
-    letter-spacing: 0.2em;
-    color: var(--text-muted);
-  }
-
-  .footer-copy {
-    font-size: 0.7rem;
-    color: var(--text-dim);
-    letter-spacing: 0.1em;
-  }
-
-  .footer-social {
-    display: flex;
-    gap: 1.5rem;
-  }
-
-  .footer-social a {
-    font-size: 0.7rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--text-dim);
-    text-decoration: none;
-    transition: color 0.3s;
-  }
-
-  .footer-social a:hover { color: var(--accent-light); }
-
-  /* RESPONSIVE */
-  @media (max-width: 900px) {
-    nav { padding: 1.5rem 2rem; }
-    nav.scrolled { padding: 1rem 2rem; }
-    .nav-links { display: none; }
-
-    .hero { grid-template-columns: 1fr; padding: 7rem 2rem 3rem; }
-    .hero-left { padding-right: 0; margin-bottom: 3rem; }
-    .hero-right { border-left: none; padding-left: 0; border-top: 1px solid var(--border-subtle); padding-top: 2rem; }
-    .hero-watermark { font-size: 45vw; opacity: 0.02; }
-
-    .section-inner { padding: 4rem 2rem; }
-    .konzept-grid { grid-template-columns: 1fr; gap: 3rem; }
-    .chef-grid { grid-template-columns: 1fr; gap: 3rem; }
-    .karte-grid { grid-template-columns: 1fr; }
-    .menu-grid { grid-template-columns: 1fr; }
-    .stats-bar-grid { grid-template-columns: repeat(2, 1fr); }
-    .contact-grid { grid-template-columns: 1fr; }
-    .nachhaltigkeit-banner { grid-template-columns: auto 1fr; }
-    .nach-label { display: none; }
-
-    footer { flex-direction: column; gap: 1rem; text-align: center; padding: 2rem; }
-  }
+/* ===== RESET & VARIABLES ===== */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0A0A0A;--bg-light:#111111;--bg-lighter:#141414;--bg-card:#1A1A1A;--bg-card-hover:#1F1F1F;
+  --text:#E8E4DF;--text-muted:#9A958E;--text-light:#C4BFB8;
+  --accent:#6B1D2A;--accent-light:#8B3040;--accent-dark:#4A1018;
+  --font-display:'Playfair Display',serif;--font-body:'DM Sans',sans-serif;
+  --transition-fast:.2s ease;--transition:.4s ease;--transition-slow:.6s ease;
+  --radius-sm:4px;--radius:8px;--radius-lg:12px;
+  --shadow-sm:0 2px 8px rgba(0,0,0,.3);--shadow:0 4px 20px rgba(0,0,0,.4);--shadow-lg:0 8px 40px rgba(0,0,0,.5);
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{background:var(--bg);color:var(--text);font-family:var(--font-body);line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+::selection{background:var(--accent);color:var(--bg)}
+img{max-width:100%;height:auto;display:block}
+a{color:var(--accent);text-decoration:none;transition:color var(--transition-fast)}
+a:hover{color:var(--accent-light)}
+h1,h2,h3,h4,h5,h6{font-family:var(--font-display);font-weight:400;line-height:1.2}
+
+
+
+/* ===== NAVIGATION ===== */
+.nav{position:fixed;top:0;left:0;width:100%;z-index:1000;padding:1.5rem 3rem;display:flex;justify-content:space-between;align-items:center;transition:all var(--transition);background:transparent}
+.nav.scrolled{background:rgba(10,10,10,.97);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);padding:1rem 3rem;box-shadow:var(--shadow)}
+.nav-logo{font-family:var(--font-display);font-size:1.5rem;font-weight:600;color:var(--text);letter-spacing:.05em;white-space:nowrap}
+.nav-logo span{color:var(--accent)}
+.nav-links{display:flex;gap:2rem;list-style:none;align-items:center}
+.nav-links a{color:var(--text-muted);font-size:.8rem;font-weight:500;letter-spacing:.15em;text-transform:uppercase;position:relative;padding-bottom:.3rem;transition:color var(--transition-fast)}
+.nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--accent);transition:width .3s ease}
+.nav-links a:hover{color:var(--text)}
+.nav-links a:hover::after{width:100%}
+.nav-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.5rem;z-index:1001}
+.nav-toggle span{width:24px;height:2px;background:var(--text);transition:all .3s;display:block}
+.mobile-nav{display:none;position:fixed;inset:0;background:rgba(10,10,10,.98);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:2rem}
+.mobile-nav.active{display:flex}
+.mobile-nav a{color:var(--text);font-family:var(--font-display);font-size:1.8rem;font-weight:300;letter-spacing:.05em}
+.mobile-nav a:hover{color:var(--accent)}
+
+/* ===== HERO ===== */
+.hero{position:relative;height:100vh;min-height:700px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1559339352-11d035aa65de?w=1400&q=80') center/cover no-repeat;transform:scale(1.05);animation:heroZoom 20s ease infinite alternate}
+@keyframes heroZoom{0%{transform:scale(1.05)}100%{transform:scale(1.12)}}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,10,.3) 0%,rgba(10,10,10,.5) 40%,rgba(10,10,10,.85) 100%)}
+.hero-content{position:relative;text-align:center;max-width:800px;padding:0 2rem}
+.hero-sub{font-family:var(--font-body);font-size:.8rem;letter-spacing:.35em;text-transform:uppercase;color:var(--accent);margin-bottom:1.5rem;font-weight:500}
+.hero-title{font-family:var(--font-display);font-size:clamp(2.8rem,7vw,5.5rem);font-weight:300;line-height:1.1;margin-bottom:1.5rem;color:var(--text)}
+.hero-title em{font-style:italic;color:var(--accent)}
+.hero-desc{font-size:1.05rem;color:var(--text-muted);max-width:550px;margin:0 auto 2.5rem;line-height:1.8;font-weight:300}
+.hero-cta{display:inline-block;padding:.9rem 2.8rem;border:1px solid var(--accent);color:var(--accent);font-size:.75rem;letter-spacing:.25em;text-transform:uppercase;font-weight:500;transition:all var(--transition);position:relative;overflow:hidden}
+.hero-cta::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:var(--accent);transition:left var(--transition);z-index:-1}
+.hero-cta:hover{color:var(--bg)}
+.hero-cta:hover::before{left:0}
+.hero-scroll{position:absolute;bottom:3rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;color:var(--text-muted);font-size:.65rem;letter-spacing:.25em;text-transform:uppercase}
+.hero-scroll-line{width:1px;height:50px;background:linear-gradient(180deg,var(--accent),transparent);animation:scrollPulse 2s ease infinite}
+@keyframes scrollPulse{0%,100%{opacity:.3}50%{opacity:1}}
+
+/* ===== SECTION BASICS ===== */
+.section{padding:7rem 2rem}
+.section-inner{max-width:1200px;margin:0 auto}
+.section-label{font-size:.7rem;letter-spacing:.35em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem;font-weight:600}
+.section-title{font-family:var(--font-display);font-size:clamp(2rem,4vw,3.5rem);font-weight:300;line-height:1.2;margin-bottom:1.5rem}
+.section-text{color:var(--text-muted);max-width:700px;line-height:1.9;font-size:.95rem;font-weight:300}
+.divider{width:60px;height:1px;background:var(--accent);margin:2rem 0}
+.section-center{text-align:center}
+.section-center .divider{margin:2rem auto}
+.section-center .section-text{margin:0 auto}
+
+/* ===== HIGHLIGHTS ===== */
+.highlights-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:3rem}
+.highlight-card{background:var(--bg-card);border:1px solid rgba(255,255,255,.04);padding:2.5rem;transition:all var(--transition);position:relative;overflow:hidden}
+.highlight-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:2px;background:linear-gradient(90deg,transparent,var(--accent),transparent);opacity:0;transition:opacity var(--transition)}
+.highlight-card:hover{border-color:rgba(255,255,255,.08);transform:translateY(-5px);box-shadow:var(--shadow)}
+.highlight-card:hover::before{opacity:1}
+.highlight-icon{font-size:2rem;margin-bottom:1.5rem;display:block}
+.highlight-card h3{font-family:var(--font-display);font-size:1.4rem;font-weight:400;margin-bottom:.75rem}
+.highlight-card p{color:var(--text-muted);font-size:.9rem;line-height:1.7;font-weight:300}
+
+/* ===== ABOUT ===== */
+.about-split{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;margin-top:3rem}
+.about-image{position:relative;aspect-ratio:4/5;overflow:hidden}
+.about-image img{width:100%;height:100%;object-fit:cover;transition:transform var(--transition-slow)}
+.about-image:hover img{transform:scale(1.05)}
+.about-image::after{content:'';position:absolute;inset:0;border:1px solid rgba(255,255,255,.06);pointer-events:none;margin:1rem;transition:margin var(--transition)}
+.about-image:hover::after{margin:.5rem}
+.about-text{padding:2rem 0}
+.about-text p{color:var(--text-muted);margin-bottom:1.5rem;line-height:1.9;font-weight:300}
+
+/* ===== PARALLAX QUOTE ===== */
+.parallax-quote{position:relative;padding:8rem 2rem;text-align:center;overflow:hidden}
+.parallax-quote-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1400&q=80') center/cover no-repeat;filter:brightness(.3)}
+.parallax-quote-content{position:relative;max-width:700px;margin:0 auto}
+.parallax-quote-content blockquote{font-family:var(--font-display);font-size:clamp(1.5rem,3vw,2.5rem);font-weight:300;font-style:italic;line-height:1.5;color:var(--text)}
+.parallax-quote-content cite{display:block;margin-top:1.5rem;font-size:.85rem;color:var(--accent);font-style:normal;letter-spacing:.1em}
+
+/* ===== MENU ===== */
+.menu-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;margin-top:3rem}
+.menu-category h3{font-family:var(--font-display);font-size:1.8rem;font-weight:400;margin-bottom:2rem;padding-bottom:.75rem;border-bottom:1px solid rgba(255,255,255,.06)}
+.menu-item{display:flex;justify-content:space-between;align-items:baseline;padding:1rem 0;border-bottom:1px solid rgba(255,255,255,.03);transition:border-color var(--transition-fast)}
+.menu-item:hover{border-bottom-color:rgba(255,255,255,.08)}
+.menu-item-info{flex:1;padding-right:1rem}
+.menu-item-name{font-family:var(--font-display);font-size:1.1rem;font-weight:400;margin-bottom:.2rem}
+.menu-item-desc{font-size:.8rem;color:var(--text-muted);font-weight:300}
+.menu-item-price{font-family:var(--font-display);font-size:1.1rem;color:var(--accent);white-space:nowrap}
+.menu-note{text-align:center;margin-top:3rem;color:var(--text-muted);font-size:.85rem;font-style:italic}
+
+/* ===== GALLERY ===== */
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem;margin-top:3rem}
+.gallery-item{position:relative;aspect-ratio:1;overflow:hidden;cursor:pointer}
+.gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform var(--transition-slow);filter:brightness(.85)}
+.gallery-item:hover img{transform:scale(1.1);filter:brightness(1)}
+.gallery-item::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 60%,rgba(10,10,10,.5) 100%);opacity:0;transition:opacity var(--transition)}
+.gallery-item:hover::after{opacity:1}
+.gallery-item:first-child{grid-column:span 2;aspect-ratio:2/1}
+
+/* ===== TESTIMONIALS ===== */
+.testimonials{margin-top:4rem;display:grid;grid-template-columns:repeat(2,1fr);gap:2rem}
+.testimonial-card{background:var(--bg-card);border:1px solid rgba(255,255,255,.04);padding:2rem;position:relative}
+.testimonial-card::before{content:'“';font-family:var(--font-display);font-size:4rem;color:var(--accent);opacity:.3;position:absolute;top:.5rem;left:1rem;line-height:1}
+.testimonial-card p{color:var(--text-muted);font-size:.9rem;line-height:1.7;font-style:italic;padding-top:1.5rem}
+.testimonial-card cite{display:block;margin-top:1rem;font-size:.8rem;color:var(--accent);font-style:normal;letter-spacing:.05em}
+
+/* ===== CONTACT ===== */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;margin-top:3rem}
+.contact-info{display:flex;flex-direction:column;gap:2rem}
+.contact-block{padding:1.5rem;background:var(--bg-card);border:1px solid rgba(255,255,255,.04);transition:border-color var(--transition-fast)}
+.contact-block:hover{border-color:rgba(255,255,255,.08)}
+.contact-block h3{font-family:var(--font-display);font-size:1.2rem;font-weight:400;margin-bottom:.5rem;color:var(--accent)}
+.contact-block p{color:var(--text-muted);font-size:.9rem;line-height:1.8;font-weight:300}
+.contact-map{aspect-ratio:1;border:1px solid rgba(255,255,255,.04);overflow:hidden}
+.contact-map iframe{width:100%;height:100%;border:0;filter:grayscale(1) invert(1) contrast(.8) brightness(.6);opacity:.7;transition:opacity var(--transition)}
+.contact-map:hover iframe{opacity:.9}
+
+/* ===== CTA BANNER ===== */
+.cta-banner{background:var(--bg-card);border-top:1px solid rgba(255,255,255,.04);border-bottom:1px solid rgba(255,255,255,.04);padding:5rem 2rem;text-align:center}
+.cta-banner h2{font-family:var(--font-display);font-size:clamp(1.8rem,3vw,2.8rem);font-weight:300;margin-bottom:1rem}
+.cta-banner p{color:var(--text-muted);max-width:500px;margin:0 auto 2rem;font-weight:300}
+.cta-banner .hero-cta{margin:0 auto}
+
+/* ===== FOOTER ===== */
+.footer{background:var(--bg);border-top:1px solid rgba(255,255,255,.04);padding:4rem 2rem 2rem}
+.footer-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:3rem}
+.footer-brand{font-family:var(--font-display);font-size:1.8rem;font-weight:300;margin-bottom:1rem}
+.footer-brand span{color:var(--accent)}
+.footer-desc{color:var(--text-muted);font-size:.85rem;line-height:1.7;max-width:300px;font-weight:300}
+.footer-col h4{font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem;font-weight:600;font-family:var(--font-body)}
+.footer-col ul{list-style:none}
+.footer-col ul li{margin-bottom:.5rem}
+.footer-col ul a{color:var(--text-muted);font-size:.85rem;transition:color var(--transition-fast)}
+.footer-col ul a:hover{color:var(--accent)}
+.footer-bottom{max-width:1200px;margin:3rem auto 0;padding-top:2rem;border-top:1px solid rgba(255,255,255,.04);display:flex;justify-content:space-between;align-items:center}
+.footer-bottom p{color:var(--text-muted);font-size:.75rem}
+.footer-bottom-links{display:flex;gap:1.5rem;list-style:none}
+.footer-bottom-links a{color:var(--text-muted);font-size:.75rem}
+.footer-bottom-links a:hover{color:var(--accent)}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:968px){
+  .nav-links{display:none}
+  .nav-toggle{display:flex}
+  .highlights-grid{grid-template-columns:1fr}
+  .about-split,.menu-grid,.contact-grid{grid-template-columns:1fr}
+  .gallery-grid{grid-template-columns:repeat(2,1fr)}
+  .gallery-item:first-child{grid-column:span 1;aspect-ratio:1}
+  .testimonials{grid-template-columns:1fr}
+  .footer-inner{grid-template-columns:1fr}
+  .footer-bottom{flex-direction:column;gap:1rem;text-align:center}
+  .section{padding:4rem 1.5rem}
+  .parallax-quote{padding:5rem 1.5rem}
+}
+@media(max-width:480px){
+  .gallery-grid{grid-template-columns:1fr}
+  .nav{padding:1rem 1.5rem}
+  .hero-title{font-size:2.5rem}
+}
+
+/* ===== ANIMATIONS ===== */
+.fade-in{opacity:0;transform:translateY(30px);transition:opacity .6s ease,transform .6s ease}
+.fade-in.visible{opacity:1;transform:translateY(0)}
+.fade-in-delay-1{transition-delay:.1s}
+.fade-in-delay-2{transition-delay:.2s}
+.fade-in-delay-3{transition-delay:.3s}
 </style>
 </head>
 <body>
 
-<nav id="nav">
-  <a href="#" class="nav-logo">ZWANZIG23</a>
+<!-- Navigation -->
+<nav class="nav" id="nav">
+  <a href="#" class="nav-logo"><span>Zwanzig23</span></a>
   <ul class="nav-links">
-    <li><a href="#konzept">Konzept</a></li>
-    <li><a href="#karte">Karte</a></li>
-    <li><a href="#menus">Menüs</a></li>
-    <li><a href="#kontakt">Kontakt</a></li>
+    <li><a href="#highlights">Highlights</a></li>
+    <li><a href="#about">Über uns</a></li>
+    <li><a href="#menu">Speisekarte</a></li>
+    <li><a href="#gallery">Galerie</a></li>
+    <li><a href="#contact">Kontakt</a></li>
   </ul>
-  <div class="nav-badge">
-    <span class="nav-star">★</span> Michelin
-    <span style="color: var(--border-subtle)">·</span>
-    <span class="nav-green">🌿</span> Grüner Stern
-  </div>
+  <button class="nav-toggle" id="navToggle" aria-label="Menü öffnen">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+<div class="mobile-nav" id="mobileNav">
+  <a href="#highlights" onclick="closeMobileNav()">Highlights</a>
+  <a href="#about" onclick="closeMobileNav()">Über uns</a>
+  <a href="#menu" onclick="closeMobileNav()">Speisekarte</a>
+  <a href="#gallery" onclick="closeMobileNav()">Galerie</a>
+  <a href="#contact" onclick="closeMobileNav()">Kontakt</a>
+</div>
 
-<!-- HERO -->
-<div class="hero">
-  <div class="hero-watermark">23</div>
-
-  <div class="hero-left">
-    <div class="hero-badge">
-      <span class="hero-badge-dot"></span>
-      Düsseldorf-Bilk · Brunnenstraße · Seit 2023
-      <span class="hero-badge-dot"></span>
-    </div>
-
-    <h1 class="hero-title">
-      Zwanzig<span class="hero-title-accent">23</span>
-    </h1>
-
-    <p class="hero-year">Eröffnet Oktober 2023 · Düsseldorf</p>
-
-    <p class="hero-desc">
-      Modernes Fine Dining im Herzen von Bilk. Lukas Jakobi verbindet technische Präzision mit kreativer Freiheit — saisonal, nachhaltig, unverwechselbar.
-    </p>
-
-    <div class="hero-stars">
-      <div class="star-badge star-badge-gold">★ Michelin-Stern</div>
-      <div class="star-badge star-badge-green">🌿 Grüner Michelin-Stern</div>
-    </div>
-
-    <a href="#kontakt" class="hero-cta">
-      Reservierung <span>→</span>
-    </a>
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="hero-sub">Düsseldorf-Bilk</p>
+    <h1 class="hero-title"><em>Zwanzig23</em></h1>
+    <p class="hero-desc">Michelin-Stern-Restaurant in Düsseldorf-Bilk. Lukas Jakobi vereint Authentizität mit kreativer Küche und setzt neue Maßstäbe im Fine Dining.</p>
+    <a href="#contact" class="hero-cta">Reservierung</a>
   </div>
+  <div class="hero-scroll">
+    <span>Entdecken</span>
+    <div class="hero-scroll-line"></div>
+  </div>
+</section>
 
-  <div class="hero-right">
-    <div class="hero-stat">
-      <div class="stat-label">Auszeichnungen</div>
-      <div class="stat-value">★ + 🌿</div>
-      <div class="stat-value-small">Michelin 2024/25</div>
+<!-- Highlights -->
+<section class="section" id="highlights">
+  <div class="section-inner section-center">
+    <p class="section-label">Unsere Highlights</p>
+    <h2 class="section-title">Was uns auszeichnet</h2>
+    <div class="divider"></div>
+    <div class="highlights-grid">
+      <div class="highlight-card">
+        <div class="highlight-icon">&#9733;</div>
+        <h3>Michelin-Stern</h3>
+        <p>Ausgezeichnet mit einem roten Michelin-Stern. Lukas Jakobi setzt neue Maßstäbe im Fine Dining mit authentischer, kreativer Küche.</p>
+      </div>
+<div class="highlight-card">
+        <div class="highlight-icon">&#127807;</div>
+        <h3>Saisonale Küche</h3>
+        <p>Jedes Gericht wird mit saisonalen, regionalen Zutaten kreiert. Das Menü wechselt regelmäßig und spiegelt die Natur wider.</p>
+      </div>
+<div class="highlight-card">
+        <div class="highlight-icon">&#127863;</div>
+        <h3>Weinbegleitung</h3>
+        <p>Eine sorgfältig kuratierte Weinbegleitung unterstreicht jeden Gang des Menüs und macht das Erlebnis perfekt.</p>
+      </div>
+
     </div>
-    <div class="hero-stat">
-      <div class="stat-label">Öffnungszeiten</div>
-      <div class="stat-value">Mi–Sa</div>
-      <div class="stat-value-small">Ab 18:30 Uhr</div>
-    </div>
-    <div class="hero-stat">
-      <div class="stat-label">Lage</div>
-      <div class="stat-value">Bilk</div>
-      <div class="stat-value-small">Brunnenstraße 35, Düsseldorf</div>
-    </div>
-    <div class="hero-stat">
-      <div class="stat-label">Küchenchef</div>
-      <div class="stat-value" style="font-size: 1.4rem;">Lukas<br>Jakobi</div>
-    </div>
+  </div>
+</section>
+
+<!-- Parallax Quote -->
+<div class="parallax-quote">
+  <div class="parallax-quote-bg"></div>
+  <div class="parallax-quote-content">
+    <blockquote>Kulinarik ist die Kunst, aus den besten Zutaten unvergessliche Momente zu schaffen.</blockquote>
+    <cite>— Zwanzig23</cite>
   </div>
 </div>
 
-<!-- KONZEPT -->
-<section id="konzept">
+<!-- About -->
+<section class="section" id="about" style="background:var(--bg-light)">
   <div class="section-inner">
-    <div class="section-label">Das Konzept</div>
-    <h2 class="section-title">Neu. Mutig.<br>Bilk.</h2>
-    <div class="divider"></div>
-
-    <div class="konzept-grid">
-      <div>
-        <div class="konzept-text">
-          <p>
-            Zwanzig23 steht für den Aufbruch. Als Lukas Jakobi im Oktober 2023 sein eigenes Restaurant in Düsseldorf-Bilk eröffnete, brachte er eine klare Vision mit: Fine Dining, das keine Kompromisse macht — weder bei Qualität noch bei Haltung.
-          </p>
-          <p>
-            Das Konzept verbindet moderne Kochtechniken mit einer tiefen Verwurzelung in Saisonalität und Regionalität. Der Grüne Michelin-Stern bestätigt: Nachhaltigkeit ist hier keine Marketingaussage, sondern gelebte Philosophie.
-          </p>
-          <p>
-            Bilk als Standort war bewusst gewählt. Kein touristischer Hotspot, sondern ein echtes Viertel — für Gäste, die wissen, warum sie kommen.
-          </p>
-        </div>
-        <div class="konzept-highlight">
-          "Wir kochen für den Moment. Für diesen Abend. Für diese Saison."
-        </div>
+    <div class="about-split">
+      <div class="about-image">
+        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&q=80" alt="Zwanzig23 Interieur" loading="lazy">
       </div>
-
-      <div class="konzept-cards">
-        <div class="konzept-card">
-          <div class="konzept-card-icon">⚡</div>
-          <div class="konzept-card-title">Modern & Präzise</div>
-          <div class="konzept-card-text">Avantgardistische Techniken treffen auf klares, ehrliches Handwerk. Jeder Gang ist durchdacht bis ins letzte Detail.</div>
-        </div>
-        <div class="konzept-card">
-          <div class="konzept-card-icon">🌿</div>
-          <div class="konzept-card-title">Grüner Michelin-Stern</div>
-          <div class="konzept-card-text">Nachhaltigkeit als Grundprinzip: Regionale Lieferanten, saisonale Ware, konsequente Ressourcenschonung — ausgezeichnet von Michelin.</div>
-        </div>
-        <div class="konzept-card">
-          <div class="konzept-card-icon">🏙️</div>
-          <div class="konzept-card-title">Bilk als Statement</div>
-          <div class="konzept-card-text">Fine Dining braucht keine Altstadt-Adresse. Zwanzig23 beweist: Spitzenküche entsteht dort, wo der Küchenchef zu Hause ist.</div>
-        </div>
+      <div class="about-text">
+        <p class="section-label">Über uns</p>
+        <h2 class="section-title">Unsere Geschichte</h2>
+        <div class="divider"></div>
+                <p>Zwanzig23 ist das Fine-Dining-Restaurant von Lukas Jakobi im Herzen von Düsseldorf-Bilk. Hier trifft authentische Handwerkskunst auf kreative Vision — mit einem Konzept, das die Grenzen der modernen Küche neu definiert.</p>
+        <p>Das mit einem roten Michelin-Stern ausgezeichnete Restaurant bietet ein Erlebnis, das weit über das Essen hinausgeht. Jedes Gericht erzählt eine Geschichte von Terroir, Saison und persönlicher Handschrift des Küchenchefs.</p>
+        <p>Die intime Atmosphäre und der direkte Kontakt zum Küchenchef machen jeden Besuch zu einem unvergesslichen Erlebnis. Die Weinkarte ergänzt das Menü mit sorgfältig ausgewählten Positionen aus aller Welt.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CHEF -->
-<section id="chef" class="chef-section">
+<!-- Menu -->
+<section class="section" id="menu">
   <div class="section-inner">
-    <div class="chef-grid">
-      <div>
-        <div class="section-label">Küchenchef & Patron</div>
-        <h2 class="chef-name">Lukas<br>Jakobi</h2>
-        <div class="chef-title">Küchenchef · Zwanzig23</div>
-      </div>
-      <div>
-        <div class="chef-quote">
-          Ich wollte ein Restaurant, das zu mir passt — nicht zu einem Konzept, das andere für mich entworfen haben. Zwanzig23 ist meine Antwort.
-        </div>
-        <div class="chef-awards">
-          <div class="chef-award">
-            <span class="chef-award-icon">★</span>
-            <span>Michelin-Stern — Erste Saison 2024/25</span>
-          </div>
-          <div class="chef-award">
-            <span class="chef-award-icon">🌿</span>
-            <span>Grüner Michelin-Stern — Nachhaltigkeit & Umweltverantwortung</span>
-          </div>
-          <div class="chef-award">
-            <span class="chef-award-icon">◆</span>
-            <span>Eröffnung Oktober 2023 in Düsseldorf-Bilk</span>
-          </div>
-          <div class="chef-award">
-            <span class="chef-award-icon">◆</span>
-            <span>Küche: Modern European mit regionaler Verwurzelung</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- KARTE -->
-<section id="karte">
-  <div class="section-inner">
-    <div class="section-label">Die Speisekarte</div>
-    <h2 class="section-title">Saisonal.<br>Kompromisslos.</h2>
+    <p class="section-label">Speisekarte</p>
+    <h2 class="section-title">Kulinarische Kompositionen</h2>
     <div class="divider"></div>
-
-    <div class="karte-grid">
-      <div class="karte-col">
-        <div class="karte-col-title">Amuse &amp; Vorspeisen</div>
-        <div class="karte-item">
-          <div class="karte-item-name">Amusen-Bouche</div>
-          <div class="karte-item-desc">Saisonale Grüße aus der Küche</div>
-        </div>
-        <div class="karte-item">
-          <div class="karte-item-name">Rote Bete &amp; Meerrettich</div>
-          <div class="karte-item-desc">Fermentiert · Kren-Espuma · Dill</div>
-        </div>
-        <div class="karte-item">
-          <div class="karte-item-name">Nordsee-Ceviche</div>
-          <div class="karte-item-desc">Seebarsch · Yuzu · Gurke · Radieschenöl</div>
-        </div>
-        <div class="karte-item">
-          <div class="karte-item-name">Gänseleber-Terrine</div>
-          <div class="karte-item-desc">Brioche · Apfel-Gelee · Sauerteig-Knusper</div>
-        </div>
-      </div>
-
-      <div class="karte-col">
-        <div class="karte-col-title">Hauptgänge</div>
-        <div class="karte-item">
-          <div class="karte-item-name">Niederrhein-Zander</div>
-          <div class="karte-item-desc">Spitzkohl · Buttermilch · Kaviar-Beurre Blanc</div>
-        </div>
-        <div class="karte-item">
-          <div class="karte-item-name">Dry-Aged Rücken</div>
-          <div class="karte-item-desc">Wagyu · Topinambur · Schwarze Knoblauchsauce</div>
-        </div>
-        <div class="karte-item">
-          <div class="karte-item-name">Wilde Pilze</div>
-          <div class="karte-item-desc">Pfifferlinge · Steinpilz · Ei 63° · Trüffel</div>
-        </div>
-        <div class="karte-item">
-          <div class="karte-item-name">Taube &amp; Foie Gras</div>
-          <div class="karte-item-desc">Keule geschmort · Leber pochiert · Kirsche</div>
-        </div>
-      </div>
-
-      <div class="karte-col">
-        <div class="karte-col-title">Desserts &amp; Käse</div>
-        <div class="karte-item">
-          <div class="karte-item-name">Käse vom Wagen</div>
-          <div class="karte-item-desc">Saisonale Auswahl · Nuss-Chutney · Sauerteig</div>
-        </div>
-        <div class="karte-item">
-          <div class="karte-item-name">Schokolade &amp; Malz</div>
-          <div class="karte-item-desc">Valrhona 72% · Gerstenmalz · Meersalz-Karamell</div>
-        </div>
-        <div class="karte-item">
-          <div class="karte-item-name">Saisonales Sorbet</div>
-          <div class="karte-item-desc">Wechselnde Frucht · Kräuter · Meringue</div>
-        </div>
-        <div class="karte-item">
-          <div class="karte-item-name">Mignardises</div>
-          <div class="karte-item-desc">Petit Fours aus der Patisserie</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- MENUS -->
-<section id="menus" style="background: var(--bg-card); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);">
-  <div class="section-inner">
-    <div class="section-label">Unsere Menüs</div>
-    <h2 class="section-title">Das volle<br>Erlebnis.</h2>
-    <div class="divider"></div>
-
+    <p class="section-text">Unsere Gerichte wechseln saisonal und werden stets mit den frischesten Zutaten zubereitet. Hier ein Auszug aus unserer Karte.</p>
     <div class="menu-grid">
-      <div class="menu-card">
-        <div class="menu-badge menu-badge-standard">◇ Abendmenü</div>
-        <div class="menu-name">Menü Zwanzig23</div>
-        <div class="menu-subtitle">5 Gänge · Saisonal · Klassisch</div>
-        <div class="menu-price">€125</div>
-        <div class="menu-price-note">Pro Person · Weinbegleitung optional +€65</div>
-        <ul class="menu-items">
-          <li>Amusen aus der Küche</li>
-          <li>Kalte Vorspeise der Saison</li>
-          <li>Warme Vorspeise</li>
-          <li>Hauptgang nach Wahl</li>
-          <li>Dessert &amp; Mignardises</li>
-        </ul>
-      </div>
+      <div class="menu-category">
+        <h3>Vorspeisen</h3>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <div class="menu-item-name">Amuse-Bouche Variation</div>
+            <div class="menu-item-desc">saisonale Überraschungen aus der Küche</div>
+          </div>
+          <span class="menu-item-price">€ —</span>
+        </div>
+<div class="menu-item">
+          <div class="menu-item-info">
+            <div class="menu-item-name">Tatar vom Reh</div>
+            <div class="menu-item-desc">mit fermentiertem Sellerie und Wacholder</div>
+          </div>
+          <span class="menu-item-price">€ 36</span>
+        </div>
+<div class="menu-item">
+          <div class="menu-item-info">
+            <div class="menu-item-name">Miso-glasierter Lachs</div>
+            <div class="menu-item-desc">mit Rettich und Ponzu-Gel</div>
+          </div>
+          <span class="menu-item-price">€ 34</span>
+        </div>
+<div class="menu-item">
+          <div class="menu-item-info">
+            <div class="menu-item-name">Ravioli von der Gänseleber</div>
+            <div class="menu-item-desc">mit Apfel und Calvados</div>
+          </div>
+          <span class="menu-item-price">€ 42</span>
+        </div>
 
-      <div class="menu-card menu-card-signature">
-        <div class="menu-badge menu-badge-signature">★ Chef's Table · Signature</div>
-        <div class="menu-name">Menü Jakobi</div>
-        <div class="menu-subtitle">8 Gänge · Lukas Jakobis Gesamtwerk</div>
-        <div class="menu-price">€195</div>
-        <div class="menu-price-note">Pro Person · Weinbegleitung +€95 · Pairing Voraussetzung empfohlen</div>
-        <ul class="menu-items">
-          <li>Drei Amusen &amp; Brot</li>
-          <li>Zwei Kalte Vorspeisen</li>
-          <li>Zwei Warme Gänge</li>
-          <li>Fischhöhepunkt der Saison</li>
-          <li>Fleischgang mit Beilage</li>
-          <li>Käse vom Wagen</li>
-          <li>Pré-Dessert &amp; Dessert</li>
-          <li>Mignardises &amp; Café</li>
-        </ul>
+      </div>
+      <div class="menu-category">
+        <h3>Hauptgerichte</h3>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <div class="menu-item-name">Steinbutt in Nussbutter</div>
+            <div class="menu-item-desc">mit Topinambur und schwarzem Knoblauch</div>
+          </div>
+          <span class="menu-item-price">€ 58</span>
+        </div>
+<div class="menu-item">
+          <div class="menu-item-info">
+            <div class="menu-item-name">Geschmorte Ochsenbacke</div>
+            <div class="menu-item-desc">mit Selleriepüree und Madeirasauce</div>
+          </div>
+          <span class="menu-item-price">€ 54</span>
+        </div>
+<div class="menu-item">
+          <div class="menu-item-info">
+            <div class="menu-item-name">Dry-Aged Taube</div>
+            <div class="menu-item-desc">mit Rote Bete und Cassis</div>
+          </div>
+          <span class="menu-item-price">€ 62</span>
+        </div>
+<div class="menu-item">
+          <div class="menu-item-info">
+            <div class="menu-item-name">Degustationsmenü</div>
+            <div class="menu-item-desc">5 bis 7 Gänge nach Wahl des Küchenchefs</div>
+          </div>
+          <span class="menu-item-price">€ ab 135</span>
+        </div>
+
       </div>
     </div>
+    <p class="menu-note">Alle Preise in Euro inkl. MwSt. Änderungen vorbehalten. Fragen Sie unser Team nach aktuellen Empfehlungen und Allergenen.</p>
+  </div>
+</section>
 
-    <!-- Nachhaltigkeit Banner -->
-    <div class="nachhaltigkeit-banner">
-      <div class="nach-icon">🌿</div>
-      <div class="nach-text">
-        <div class="nach-title">Grüner Michelin-Stern — Ausgezeichnete Nachhaltigkeit</div>
-        Zwanzig23 bezieht seine Produkte aus einem Netzwerk regionaler Erzeuger innerhalb von 150 km. Foodwaste wird auf ein Minimum reduziert, Verpackungen sind plastikfrei, und saisonale Verfügbarkeit bestimmt die Karte — nicht umgekehrt.
-      </div>
-      <div class="nach-label">🌿 Grüner Stern</div>
+<!-- Gallery -->
+<section class="section" id="gallery" style="background:var(--bg-light)">
+  <div class="section-inner">
+    <p class="section-label">Impressionen</p>
+    <h2 class="section-title">Galerie</h2>
+    <div class="divider"></div>
+    <div class="gallery-grid">
+      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&q=80" alt="Restaurant Interieur" loading="lazy"></div>
+<div class="gallery-item"><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80" alt="Kulinarisches Gericht" loading="lazy"></div>
+<div class="gallery-item"><img src="https://images.unsplash.com/photo-1550966871-3ed3cdb51f3a?w=600&q=80" alt="Weinbegleitung" loading="lazy"></div>
+<div class="gallery-item"><img src="https://images.unsplash.com/photo-1424847651672-bf20a4b0982b?w=600&q=80" alt="Bar Bereich" loading="lazy"></div>
+<div class="gallery-item"><img src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?w=600&q=80" alt="Gesellschaft" loading="lazy"></div>
+<div class="gallery-item"><img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=600&q=80" alt="Gericht Detail" loading="lazy"></div>
+
     </div>
   </div>
 </section>
 
-<!-- STATS BAR -->
-<div class="stats-bar">
-  <div class="stats-bar-grid">
-    <div class="stats-bar-item">
-      <div class="stats-bar-value">★</div>
-      <div class="stats-bar-label">Michelin-Stern</div>
-    </div>
-    <div class="stats-bar-item">
-      <div class="stats-bar-value">🌿</div>
-      <div class="stats-bar-label">Grüner Stern</div>
-    </div>
-    <div class="stats-bar-item">
-      <div class="stats-bar-value">Mi–Sa</div>
-      <div class="stats-bar-label">Ab 18:30 Uhr</div>
-    </div>
-    <div class="stats-bar-item">
-      <div class="stats-bar-value">2023</div>
-      <div class="stats-bar-label">Gründungsjahr</div>
+<!-- Testimonials -->
+<section class="section">
+  <div class="section-inner section-center">
+    <p class="section-label">Stimmen</p>
+    <h2 class="section-title">Was unsere Gäste sagen</h2>
+    <div class="divider"></div>
+    <div class="testimonials">
+      <div class="testimonial-card">
+        <p>Ein unvergessliches Erlebnis. Die Küche, der Service, die Atmosphäre — alles stimmte bis ins kleinste Detail. Wir kommen definitiv wieder.</p>
+        <cite>— Gast bei Zwanzig23</cite>
+      </div>
+      <div class="testimonial-card">
+        <p>Selten so gut gegessen. Jeder Gang war ein kleines Kunstwerk. Die Weinbegleitung war perfekt abgestimmt. Absolute Empfehlung!</p>
+        <cite>— Gast bei Zwanzig23</cite>
+      </div>
     </div>
   </div>
+</section>
+
+
+<!-- Awards & Recognition -->
+<section class="section" style="background:var(--bg-light)">
+  <div class="section-inner section-center">
+    <p class="section-label">Auszeichnungen</p>
+    <h2 class="section-title">Anerkennung &amp; Qualität</h2>
+    <div class="divider"></div>
+    <p class="section-text">Unsere Leidenschaft für Perfektion wurde vielfach ausgezeichnet. Diese Anerkennungen motivieren uns täglich, noch besser zu werden.</p>
+    <div class="highlights-grid" style="margin-top:3rem">
+      <div class="highlight-card">
+        <div class="highlight-icon">&#127942;</div>
+        <h3>Ausgezeichnete Qualität</h3>
+        <p>Von renommierten Restaurantführern und Kritikern anerkannt. Unsere Küche steht für höchste Standards und kompromisslose Qualität bei jeder einzelnen Zubereitung.</p>
+      </div>
+      <div class="highlight-card">
+        <div class="highlight-icon">&#127793;</div>
+        <h3>Nachhaltige Küche</h3>
+        <p>Wir setzen auf regionale und saisonale Produkte von ausgewählten Erzeugern. Nachhaltigkeit ist für uns kein Trend, sondern Überzeugung und tägliche Praxis.</p>
+      </div>
+      <div class="highlight-card">
+        <div class="highlight-icon">&#128150;</div>
+        <h3>Gästezufriedenheit</h3>
+        <p>Das Lächeln unserer Gäste ist unsere größte Auszeichnung. Über 95% unserer Besucher empfehlen uns weiter — und viele werden zu Stammgästen auf Lebenszeit.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Team Section -->
+<section class="section">
+  <div class="section-inner">
+    <div class="about-split" style="margin-top:0">
+      <div class="about-text">
+        <p class="section-label">Unser Team</p>
+        <h2 class="section-title">Die Menschen hinter dem Erlebnis</h2>
+        <div class="divider"></div>
+        <p>Hinter jedem großartigen Gericht steht ein engagiertes Team von Profis, die ihre Leidenschaft zum Beruf gemacht haben. Unsere Köche, Sommeliers und Service-Mitarbeiter arbeiten Hand in Hand, um Ihnen ein unvergessliches Erlebnis zu bieten.</p>
+        <p>Von der sorgfältigen Auswahl der Zutaten über die kreative Zubereitung in der Küche bis hin zum aufmerksamen Service am Tisch — jedes Detail zählt. Unser Team vereint jahrelange Erfahrung mit frischer Kreativität und aufrichtiger Gastfreundschaft.</p>
+        <p>Wir glauben daran, dass wahre Gastronomie ein Zusammenspiel aus Handwerk, Herzlichkeit und der unerschütterlichen Liebe zum Detail ist. Jeder einzelne Mitarbeiter trägt dazu bei, dass Ihr Besuch bei uns zu etwas Besonderem wird und unvergesslich bleibt.</p>
+      </div>
+      <div class="about-image">
+        <img src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?w=800&q=80" alt="Unser Küchenteam" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Philosophy Section -->
+<section class="section" style="background:var(--bg-light)">
+  <div class="section-inner section-center">
+    <p class="section-label">Philosophie</p>
+    <h2 class="section-title">Unsere Werte</h2>
+    <div class="divider"></div>
+    <div class="highlights-grid" style="margin-top:3rem">
+      <div class="highlight-card">
+        <div class="highlight-icon">&#127860;</div>
+        <h3>Handwerk &amp; Tradition</h3>
+        <p>Wir ehren die großen Traditionen der Kochkunst und verbinden sie mit zeitgemäßen Techniken. Jedes Gericht wird mit handwerklicher Präzision und tiefstem Respekt vor den Zutaten zubereitet. Die Verbindung von Altem und Neuem ist der Kern unserer kulinarischen Identität.</p>
+      </div>
+      <div class="highlight-card">
+        <div class="highlight-icon">&#127807;</div>
+        <h3>Saisonalität &amp; Frische</h3>
+        <p>Unsere Speisekarte folgt dem Rhythmus der Natur. Wir beziehen unsere Zutaten von ausgewählten regionalen Erzeugern und internationalen Spezialisten, die dieselbe Leidenschaft für Qualität teilen. So garantieren wir stets die bestmögliche Frische und den intensivsten Geschmack.</p>
+      </div>
+      <div class="highlight-card">
+        <div class="highlight-icon">&#10024;</div>
+        <h3>Gastfreundschaft</h3>
+        <p>Bei uns sind Sie nicht nur Gast — Sie sind Teil eines Erlebnisses. Unser Service ist aufmerksam ohne aufdringlich zu sein, kompetent und herzlich zugleich. Wir möchten, dass Sie sich bei uns wie zu Hause fühlen, nur besser — verwöhnt, inspiriert und vollkommen zufrieden.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Events Section -->
+<section class="section">
+  <div class="section-inner">
+    <p class="section-label">Veranstaltungen</p>
+    <h2 class="section-title">Private Events &amp; besondere Anlässe</h2>
+    <div class="divider"></div>
+    <p class="section-text">Ob Geburtstag, Firmenevent, Hochzeit oder Jubiläum — wir gestalten Ihren besonderen Anlass zu einem unvergesslichen Erlebnis. Unser erfahrenes Event-Team kümmert sich um jedes Detail.</p>
+    <div class="highlights-grid" style="margin-top:3rem">
+      <div class="highlight-card">
+        <div class="highlight-icon">&#127881;</div>
+        <h3>Private Dinner</h3>
+        <p>Exklusive Abende in privatem Rahmen mit individuell zusammengestelltem Menü. Wir erstellen Ihnen ein maßgeschneidertes Konzept, das Ihren Vorstellungen in jeder Hinsicht entspricht und Ihre Gäste begeistert.</p>
+      </div>
+      <div class="highlight-card">
+        <div class="highlight-icon">&#128188;</div>
+        <h3>Firmenevents</h3>
+        <p>Beeindrucken Sie Ihre Geschäftspartner und Mitarbeiter mit einem kulinarischen Event der Extraklasse. Von der Produktpräsentation bis zum Jahresabschluss — wir schaffen den perfekten Rahmen für Ihren geschäftlichen Erfolg.</p>
+      </div>
+      <div class="highlight-card">
+        <div class="highlight-icon">&#128141;</div>
+        <h3>Besondere Anlässe</h3>
+        <p>Hochzeiten, Verlobungen, runde Geburtstage — die wichtigsten Momente im Leben verdienen einen besonderen Rahmen. Lassen Sie uns gemeinsam einen unvergesslichen Tag planen, der noch lange in Erinnerung bleibt.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Seasonal Menu Teaser -->
+<section class="section" style="background:var(--bg-light)">
+  <div class="section-inner">
+    <div class="about-split" style="margin-top:0">
+      <div class="about-image">
+        <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80" alt="Saisonale Küche" loading="lazy">
+      </div>
+      <div class="about-text">
+        <p class="section-label">Saison</p>
+        <h2 class="section-title">Aktuelle Saison-Highlights</h2>
+        <div class="divider"></div>
+        <p>Der Frühling bringt frische Aromen und neue Inspirationen auf unsere Karte. Entdecken Sie unsere aktuellen Saison-Highlights: von zartem Spargel über duftenden Bärlauch bis hin zu den ersten Erdbeeren des Jahres — alles frisch von ausgesuchten regionalen Erzeugern.</p>
+        <p>Unser Küchenchef lässt sich von den besten Produkten der Saison inspirieren und kreiert daraus Gerichte, die den Geschmack des Frühlings perfekt einfangen. Jedes Gericht erzählt eine Geschichte von Terroir, Handwerk und Leidenschaft für das Kochen.</p>
+        <p>Fragen Sie bei Ihrer Reservierung nach unseren aktuellen Empfehlungen und dem saisonalen Degustationsmenü. Wir beraten Sie gerne persönlich und stellen Ihnen ein individuelles Menü zusammen, das genau zu Ihrem Anlass und Ihren Vorlieben passt.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Wine & Drinks Section -->
+<section class="section">
+  <div class="section-inner">
+    <div class="about-split" style="margin-top:0">
+      <div class="about-text">
+        <p class="section-label">Weinkarte &amp; Getränke</p>
+        <h2 class="section-title">Erlesene Tropfen für jeden Anlass</h2>
+        <div class="divider"></div>
+        <p>Unsere Weinkarte ist das Ergebnis jahrelanger Leidenschaft und sorgfältiger Auswahl. Von kraftvollen Rotweinen aus dem Bordeaux über elegante Burgunderweine bis hin zu spritzigen Rieslingen von der Mosel — wir bieten für jeden Geschmack und jeden Anlass den perfekten Tropfen. Unsere Sommeliers beraten Sie gerne persönlich und finden die ideale Begleitung zu Ihrem Menü.</p>
+        <p>Neben unserer umfangreichen Weinkarte bieten wir auch eine exklusive Auswahl an Champagnern, Digestifs und alkoholfreien Kreationen. Unsere hausgemachten Limonaden und die sorgfältig ausgewählten Mineralwasser runden das Getränkeangebot ab. Fragen Sie nach unserer aktuellen Empfehlung des Hauses — unsere Sommeliers überraschen Sie gerne mit einem besonderen Tropfen, der perfekt zur Saison und zu Ihrer Menüauswahl passt.</p>
+        <p>Für besondere Anlässe bieten wir auch eine individuelle Weinbegleitung an: Zu jedem Gang Ihres Menüs wählen unsere Experten den passenden Wein aus und erklären Ihnen die Besonderheiten jedes einzelnen Tropfens. Ein Erlebnis, das Ihren Gaumen auf eine ganz eigene Reise mitnimmt und die Aromen jedes Gerichts auf einzigartige Weise unterstreicht und ergänzt.</p>
+      </div>
+      <div class="about-image">
+        <img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=800&q=80" alt="Weinauswahl" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Location & Atmosphere -->
+<section class="section" style="background:var(--bg-light)">
+  <div class="section-inner section-center">
+    <p class="section-label">Atmosphäre</p>
+    <h2 class="section-title">Ein Ort, der alle Sinne anspricht</h2>
+    <div class="divider"></div>
+    <p class="section-text" style="margin:0 auto 3rem">Die Atmosphäre eines Restaurants ist ebenso wichtig wie die Küche selbst. Bei uns haben wir einen Raum geschaffen, der Eleganz und Behaglichkeit vereint — ein Ort, an dem Sie den Alltag hinter sich lassen und den Moment genießen können.</p>
+    <div class="highlights-grid">
+      <div class="highlight-card">
+        <div class="highlight-icon">&#128161;</div>
+        <h3>Stimmungsvolles Licht</h3>
+        <p>Warmes, gedämpftes Licht schafft eine intime Atmosphäre, die zum Verweilen einlädt. Jeder Tisch wird individuell beleuchtet, um eine private und zugleich einladende Stimmung zu erzeugen, die das Dining-Erlebnis perfekt unterstreicht und Ihre Sinne anspricht.</p>
+      </div>
+      <div class="highlight-card">
+        <div class="highlight-icon">&#127925;</div>
+        <h3>Dezente Klänge</h3>
+        <p>Eine sorgfältig zusammengestellte musikalische Untermalung begleitet Ihren Abend dezent und stilvoll. Die Lautstärke ist so gewählt, dass Sie sich in Ruhe unterhalten können, während die Musik die besondere Atmosphäre unseres Hauses unterstreicht und verstärkt.</p>
+      </div>
+      <div class="highlight-card">
+        <div class="highlight-icon">&#127803;</div>
+        <h3>Edles Design</h3>
+        <p>Von der Einrichtung über das Geschirr bis hin zu den Servietten — jedes Detail ist mit Sorgfalt ausgewählt. Hochwertige Materialien, zeitloses Design und eine harmonische Farbgebung schaffen ein Ambiente, das die kulinarischen Kreationen perfekt in Szene setzt und begleitet.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="section">
+  <div class="section-inner">
+    <p class="section-label">Häufig gestellte Fragen</p>
+    <h2 class="section-title">Gut zu wissen</h2>
+    <div class="divider"></div>
+    <div class="menu-grid" style="margin-top:2rem">
+      <div class="menu-category" style="border:none">
+        <div class="menu-item" style="flex-direction:column;align-items:flex-start;gap:.5rem;padding:1.5rem 0">
+          <div class="menu-item-name" style="color:var(--accent)">Ist eine Reservierung erforderlich?</div>
+          <div class="menu-item-desc" style="font-size:.9rem;line-height:1.7">Wir empfehlen dringend eine Reservierung, insbesondere am Wochenende und an Feiertagen. So können wir sicherstellen, dass Ihr Tisch bereitsteht und wir alles für Ihren perfekten Abend vorbereiten können. Kontaktieren Sie uns telefonisch oder per E-Mail für Ihre Reservierung.</div>
+        </div>
+        <div class="menu-item" style="flex-direction:column;align-items:flex-start;gap:.5rem;padding:1.5rem 0">
+          <div class="menu-item-name" style="color:var(--accent)">Gibt es einen Dresscode?</div>
+          <div class="menu-item-desc" style="font-size:.9rem;line-height:1.7">Wir bitten um gepflegte, elegante Kleidung, die dem Anlass und unserem Ambiente entspricht. Smart Casual ist in den meisten Bereichen willkommen. Für besondere Anlässe empfehlen wir Business-Attire oder elegantere Garderobe, die den besonderen Charakter Ihres Abends unterstreicht.</div>
+        </div>
+        <div class="menu-item" style="flex-direction:column;align-items:flex-start;gap:.5rem;padding:1.5rem 0">
+          <div class="menu-item-name" style="color:var(--accent)">Werden Allergien berücksichtigt?</div>
+          <div class="menu-item-desc" style="font-size:.9rem;line-height:1.7">Selbstverständlich. Bitte teilen Sie uns bei Ihrer Reservierung Allergien und Unverträglichkeiten mit. Unser Küchenteam erstellt Ihnen gerne ein angepasstes Menü, das Ihre Bedürfnisse berücksichtigt, ohne Kompromisse bei Geschmack und Qualität einzugehen.</div>
+        </div>
+      </div>
+      <div class="menu-category" style="border:none">
+        <div class="menu-item" style="flex-direction:column;align-items:flex-start;gap:.5rem;padding:1.5rem 0">
+          <div class="menu-item-name" style="color:var(--accent)">Gibt es Parkmöglichkeiten?</div>
+          <div class="menu-item-desc" style="font-size:.9rem;line-height:1.7">In unmittelbarer Nähe finden Sie ausreichend Parkmöglichkeiten. Fragen Sie bei Ihrer Reservierung nach Details zu Parkservice oder nahegelegenen Parkhäusern, um eine stressfreie Anreise zu gewährleisten und Ihren Abend entspannt zu beginnen.</div>
+        </div>
+        <div class="menu-item" style="flex-direction:column;align-items:flex-start;gap:.5rem;padding:1.5rem 0">
+          <div class="menu-item-name" style="color:var(--accent)">Kann man Gutscheine kaufen?</div>
+          <div class="menu-item-desc" style="font-size:.9rem;line-height:1.7">Ja, wir bieten elegante Geschenkgutscheine in verschiedenen Werten an — das perfekte Geschenk für jeden Anlass. Ob zum Geburtstag, Jubiläum oder einfach als besondere Überraschung: Ein Gutschein für ein kulinarisches Erlebnis in unserem Haus ist immer willkommen.</div>
+        </div>
+        <div class="menu-item" style="flex-direction:column;align-items:flex-start;gap:.5rem;padding:1.5rem 0">
+          <div class="menu-item-name" style="color:var(--accent)">Sind Kinder willkommen?</div>
+          <div class="menu-item-desc" style="font-size:.9rem;line-height:1.7">Kinder sind bei uns herzlich willkommen. Auf Wunsch erstellen wir gerne ein kindgerechtes Menü. Bitte informieren Sie uns bei der Reservierung, damit wir alles für Ihren Besuch mit der ganzen Familie optimal vorbereiten und einen geeigneten Tisch reservieren können.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Additional Gallery Row -->
+<section class="section" style="padding:3rem 2rem">
+  <div class="section-inner">
+    <div class="gallery-grid" style="grid-template-columns:repeat(4,1fr)">
+      <div class="gallery-item" style="aspect-ratio:16/9;grid-column:span 2"><img src="https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?w=600&q=80" alt="Küche in Aktion" loading="lazy"></div>
+      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1551218808-94e220e084d2?w=400&q=80" alt="Dessert" loading="lazy"></div>
+      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=400&q=80" alt="Gericht Detail" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<!-- Process Section -->
+<section class="section" style="background:var(--bg-light);padding:5rem 2rem">
+  <div class="section-inner section-center">
+    <p class="section-label">Unser Prozess</p>
+    <h2 class="section-title">Vom Markt auf Ihren Teller</h2>
+    <div class="divider"></div>
+    <div class="highlights-grid" style="margin-top:3rem;grid-template-columns:repeat(4,1fr)">
+      <div class="highlight-card" style="text-align:center">
+        <div style="font-family:var(--font-display);font-size:3rem;color:var(--accent);opacity:.5;margin-bottom:1rem">01</div>
+        <h3 style="font-size:1.1rem">Auswahl</h3>
+        <p style="font-size:.85rem">Jeden Morgen wählen wir die frischesten und besten Zutaten von unseren vertrauenswürdigen regionalen Lieferanten und dem lokalen Markt aus.</p>
+      </div>
+      <div class="highlight-card" style="text-align:center">
+        <div style="font-family:var(--font-display);font-size:3rem;color:var(--accent);opacity:.5;margin-bottom:1rem">02</div>
+        <h3 style="font-size:1.1rem">Kreation</h3>
+        <p style="font-size:.85rem">Unser Küchenchef entwickelt aus den besten Produkten des Tages einzigartige Kreationen, die saisonale Aromen perfekt einfangen und zur Geltung bringen.</p>
+      </div>
+      <div class="highlight-card" style="text-align:center">
+        <div style="font-family:var(--font-display);font-size:3rem;color:var(--accent);opacity:.5;margin-bottom:1rem">03</div>
+        <h3 style="font-size:1.1rem">Zubereitung</h3>
+        <p style="font-size:.85rem">Mit handwerklicher Präzision und modernsten Techniken werden unsere Gerichte frisch zubereitet — jeder Teller ist ein Unikat mit individueller Note.</p>
+      </div>
+      <div class="highlight-card" style="text-align:center">
+        <div style="font-family:var(--font-display);font-size:3rem;color:var(--accent);opacity:.5;margin-bottom:1rem">04</div>
+        <h3 style="font-size:1.1rem">Genuss</h3>
+        <p style="font-size:.85rem">Perfekt angerichtet kommt das Gericht auf Ihren Tisch — begleitet von der passenden Weinempfehlung und einem aufmerksamen, herzlichen Service.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Newsletter/Closing -->
+<section class="section section-center" style="padding:5rem 2rem">
+  <div class="section-inner">
+    <p class="section-label">Bleiben Sie informiert</p>
+    <h2 class="section-title">Neuigkeiten &amp; Empfehlungen</h2>
+    <div class="divider" style="margin:2rem auto"></div>
+    <p class="section-text" style="margin:0 auto 2rem">Folgen Sie uns auf Social Media, um keine Neuigkeiten zu verpassen. Von saisonalen Menü-Updates über besondere Events bis hin zu exklusiven Einblicken hinter die Kulissen unserer Küche.</p>
+    <a href="#contact" class="hero-cta">Kontakt aufnehmen</a>
+  </div>
+</section>
+
+<!-- CTA Banner -->
+<div class="cta-banner">
+  <h2>Ihr Tisch wartet</h2>
+  <p>Reservieren Sie jetzt Ihren Platz und erleben Sie einen unvergesslichen Abend bei Zwanzig23.</p>
+  <a href="#contact" class="hero-cta">Jetzt reservieren</a>
 </div>
 
-<!-- CONTACT -->
-<section id="kontakt">
+<!-- Contact -->
+<section class="section" id="contact">
   <div class="section-inner">
-    <div class="section-label">Besuchen Sie uns</div>
-    <h2 class="section-title">Tisch<br>reservieren.</h2>
+    <p class="section-label">Kontakt</p>
+    <h2 class="section-title">Besuchen Sie uns</h2>
     <div class="divider"></div>
-
     <div class="contact-grid">
-      <div class="contact-block">
-        <div class="contact-block-title">Adresse</div>
-        <div class="contact-block-value">
-          Brunnenstraße 35<br>
-          40223 Düsseldorf-Bilk
+      <div class="contact-info">
+        <div class="contact-block">
+          <h3>Adresse</h3>
+          <p>Brunnenstraße 35<br>40223 Düsseldorf-Bilk</p>
         </div>
-        <div class="contact-block-sub">Nahe Bilker Stern · Tram Haltestelle Brunnenstraße</div>
+        <div class="contact-block">
+          <h3>Reservierung</h3>
+          <p>Telefon: +49 173 9220294<br>E-Mail: info@zwanzig23.com</p>
+        </div>
+        <div class="contact-block">
+          <h3>Öffnungszeiten</h3>
+          <p>Mittwoch – Samstag: ab 18:30 Uhr<br>Sonntag – Dienstag: Ruhetag<br><em style="color:var(--accent);font-size:.8rem">[VERIFIZIEREN — Öffnungszeiten vor Besuch bestätigen]</em></p>
+        </div>
+        <div class="contact-block">
+          <h3>Online</h3>
+          <p><a href="https://zwanzig23.com" target="_blank" rel="noopener">Offizielle Website besuchen &rarr;</a></p>
+        </div>
       </div>
-
-      <div class="contact-block">
-        <div class="contact-block-title">Kontakt &amp; Öffnungszeiten</div>
-        <div class="contact-block-value">+49 173 9220294</div>
-        <div class="contact-block-sub">
-          info@zwanzig23.com<br>
-          Mittwoch–Samstag ab 18:30 Uhr<br>
-          Sonntag–Dienstag geschlossen
-        </div>
-      </div>
-
-      <div class="contact-block">
-        <div class="contact-block-title">Reservierungen</div>
-        <div class="contact-block-value">zwanzig23.com</div>
-        <div class="contact-block-sub">
-          Online über die Website<br>
-          oder telefonisch<br>
-          Vorausreservierung dringend empfohlen
-        </div>
+      <div class="contact-map">
+        <iframe src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=Brunnenstraße+35,+40223+Düsseldorf&zoom=15" allowfullscreen loading="lazy" title="Karte Zwanzig23"></iframe>
       </div>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
-<footer>
-  <div class="footer-logo">ZWANZIG23</div>
-  <div class="footer-copy">© 2025 Zwanzig23 · Düsseldorf-Bilk · Lukas Jakobi</div>
-  <div class="footer-social">
-    <a href="#">Instagram</a>
-    <a href="#">Reservierung</a>
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand"><span>Zwanzig23</span></div>
+      <p class="footer-desc">Fine Dining by Lukas Jakobi. Düsseldorf-Bilk.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navigation</h4>
+      <ul>
+        <li><a href="#highlights">Highlights</a></li>
+        <li><a href="#about">Über uns</a></li>
+        <li><a href="#menu">Speisekarte</a></li>
+        <li><a href="#gallery">Galerie</a></li>
+        <li><a href="#contact">Kontakt</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Kontakt</h4>
+      <ul>
+        <li><a href="tel:+49 173 9220294">+49 173 9220294</a></li>
+        <li><a href="mailto:info@zwanzig23.com">info@zwanzig23.com</a></li>
+        <li><a href="https://zwanzig23.com" target="_blank" rel="noopener">Website</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2025 Zwanzig23. Alle Rechte vorbehalten.</p>
+    <ul class="footer-bottom-links">
+      <li><a href="#">Impressum</a></li>
+      <li><a href="#">Datenschutz</a></li>
+    </ul>
   </div>
 </footer>
 
 <script>
-  const nav = document.getElementById('nav');
-  window.addEventListener('scroll', () => {
-    nav.classList.toggle('scrolled', window.scrollY > 50);
+// Navbar scroll
+const nav=document.getElementById('nav');
+let lastScroll=0;
+window.addEventListener('scroll',()=>{
+  nav.classList.toggle('scrolled',window.scrollY>80);
+});
+
+// Mobile nav
+const toggle=document.getElementById('navToggle');
+const mobileNav=document.getElementById('mobileNav');
+toggle.addEventListener('click',()=>{
+  mobileNav.classList.toggle('active');
+  const spans=toggle.querySelectorAll('span');
+  if(mobileNav.classList.contains('active')){
+    spans[0].style.transform='rotate(45deg) translate(5px,5px)';
+    spans[1].style.opacity='0';
+    spans[2].style.transform='rotate(-45deg) translate(5px,-5px)';
+  }else{
+    spans[0].style.transform='none';
+    spans[1].style.opacity='1';
+    spans[2].style.transform='none';
+  }
+});
+function closeMobileNav(){
+  mobileNav.classList.remove('active');
+  const spans=toggle.querySelectorAll('span');
+  spans[0].style.transform='none';
+  spans[1].style.opacity='1';
+  spans[2].style.transform='none';
+}
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',function(e){
+    e.preventDefault();
+    const t=document.querySelector(this.getAttribute('href'));
+    if(t)t.scrollIntoView({behavior:'smooth',block:'start'});
   });
+});
+
+// Intersection Observer for fade-in
+const obs=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('visible');
+      obs.unobserve(e.target);
+    }
+  });
+},{threshold:0.1,rootMargin:'0px 0px -50px 0px'});
+document.querySelectorAll('.highlight-card,.menu-category,.gallery-item,.contact-block,.testimonial-card,.about-image,.about-text').forEach((el,i)=>{
+  el.classList.add('fade-in');
+  if(i%3===1)el.classList.add('fade-in-delay-1');
+  if(i%3===2)el.classList.add('fade-in-delay-2');
+  obs.observe(el);
+});
+
+// Parallax effect
+window.addEventListener('scroll',()=>{
+  const q=document.querySelector('.parallax-quote-bg');
+  if(q){
+    const r=q.parentElement.getBoundingClientRect();
+    if(r.top<window.innerHeight&&r.bottom>0){
+      q.style.transform='translateY('+(r.top*0.3)+'px)';
+    }
+  }
+});
+
+// Counter animation for stats
+function animateValue(el,start,end,duration){
+  let startTime=null;
+  function animation(currentTime){
+    if(!startTime)startTime=currentTime;
+    const progress=Math.min((currentTime-startTime)/duration,1);
+    el.textContent=Math.floor(progress*(end-start)+start);
+    if(progress<1)requestAnimationFrame(animation);
+  }
+  requestAnimationFrame(animation);
+}
 </script>
 </body>
 </html>
