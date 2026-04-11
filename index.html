@@ -813,5 +813,24 @@ function animateValue(el,start,end,duration){
   requestAnimationFrame(animation);
 }
 </script>
+
+<script>
+/* Fallback: ensure all content is visible even if animations fail */
+setTimeout(function(){
+  var els = document.querySelectorAll('[style*="opacity"]');
+  els.forEach(function(el){
+    if(getComputedStyle(el).opacity === '0'){
+      el.style.transition = 'opacity 0.5s ease';
+      el.style.opacity = '1';
+    }
+  });
+  /* Also check CSS-animated elements */
+  document.querySelectorAll('.fade-in,.slide-up,.animate-in,.reveal,.scroll-reveal').forEach(function(el){
+    el.style.opacity = '1';
+    el.style.transform = 'none';
+  });
+}, 3000);
+</script>
+
 </body>
 </html>
